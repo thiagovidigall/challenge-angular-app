@@ -1,117 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/scss/bootstrap';
 
-* {
-    margin: 0;
-    padding: 0;
+h1,
+h2,
+h3,
+h4,
+ul,
+p,
+blockquote,
+dd {
+  margin: 0px;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
+ul {
+  padding: 0px;
+  list-style: none;
 }
 
-html {
-  font-size: 62.5%;
-  box-sizing: border-box;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  border: none;
 }
 
 body {
-  font-family: "Poppins", system-ui;
+  font-family: "Creepster", system-ui;
   font-weight: 400;
-  line-height: 1.6;
-//   color: #777;
-//   padding: 3rem;
-  
-}
-
-.container {
-    width: 1440px;
-    height: 768px;
-    // top: -426px;
-    // left: -510px;
-    // padding: 64px 0 0 0;
-}
-
-.global_header {
-    width: 1440px;
-    // height: ...sure-sizing-huge;
-    padding: 8px 24px 8px 24px; //measure-spacing-l //24px?
-    // justify-content: space-between;    
-    background-color: #0A0A0A; //color-core-foreground
-    border: 0 0 1px 0;
-    border-color: #3D3D3D; //color-core-border
-    // inner aligment
-
-    .logo {
-        width: 114px;
-        height: 64px;
-        // image: 
-    }
-
-    .nav_links {
-        // horinzontal
-        //  size medium
-        // color primary
-        width: 253px;  //hug
-        height: 40px; //hug
-        border: 1px;
-        // radius: measure-radius-s
-        border-color: #3D3D3D; //color-core-border
-        // center aligment
-
-        .inicio {
-            width: 99px;  //hug
-            // height: measure-sizing-xxl;
-            // padding: measure-spacing-xx, m, xs;
-            // gap: measure-spacing-xs;
-            //  size medium
-            // color primary
-            // flat
-            background-color: #FFFFFF;
-        }
-
-        .favorito {
-            width: 154px;  //hug
-            // height: measure-sizing-xxl;
-            // padding: measure-spacing-xx, m, xs;
-            // gap: measure-spacing-xs;
-            //  size medium
-            // color primary
-            // flat
-            background-color: #FFFFFF;
-        }
-    }
-}
-
-.page {
-    width: 1440px; //FILL
-    height: 704px; //fill
-    padding: 48px 24px 48px 24px ;
-    gap: 24px;
-    background-color: #1F1F1F;  //color-core-background
-}
-
-.content {
-    width: 720px; //FILL
-    height: 608px; //fill
-    gap: 48px; //measure-sapacing-xxxl
+  font-style: normal;
 }
 
 
-
-.creepster-regular {
-    font-family: "Creepster", system-ui;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  .poppins-regular {
-    font-family: "Poppins", system-ui;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@mixin padding-grid($top, $right, $bottom, $left) {
+  padding: $top $right $bottom $left;
+}
