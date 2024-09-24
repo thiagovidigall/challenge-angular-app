@@ -10,7 +10,7 @@ import { Character } from '../../models/character';
 @Component({
   selector: 'app-gallery-list',
   templateUrl: './gallery-list.component.html',
-  styleUrls: ['./gallery-list.component.css'],
+  styleUrls: ['./gallery-list.component.scss'],
 })
 export class GalleryListComponent  {
 

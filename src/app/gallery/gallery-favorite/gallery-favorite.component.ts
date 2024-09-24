@@ -12,7 +12,7 @@ import { Store } from '../service/gallery.store';
 @Component({
   selector: 'app-gallery-favorite',
   templateUrl: './gallery-favorite.component.html',
-  styleUrls: ['./gallery-favorite.component.css']
+  styleUrls: ['./gallery-favorite.component.scss']
 })
 export class GalleryFavoriteComponent implements OnInit{
   favoritelist$: Observable<any[]>;

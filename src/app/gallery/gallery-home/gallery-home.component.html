@@ -2,15 +2,16 @@
   <section class="search-section">
     <app-gallery-search-input [list]="characterslist$ | async" (resultList)="onResultList($event)"></app-gallery-search-input>
   </section>
-  <section class="page">
-    <div class="content">
-      <!-- <gallery [list]="characterslist$ | async" (toggle)="onToggle($event)"></gallery> -->
+  <section class="body-section">
+    <div class="content">      
       <pagination-controls
         previousLabel="Prev"
         nextLabel="Next"
         [responsive]="true"
         (pageChange)="handlePageChange($event)"
       ></pagination-controls>
+
+      <!-- <gallery [list]="characterslist$ | async" (toggle)="onToggle($event)"></gallery> -->
 
       <div
         *ngFor="
