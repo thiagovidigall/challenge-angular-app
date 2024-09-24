@@ -4,10 +4,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-  map,
-  Observable,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {
   Character,
@@ -19,9 +16,10 @@ import { Store } from '../service/gallery.store';
 @Component({
   selector: 'app-gallery-home',
   templateUrl: './gallery-home.component.html',
-  styleUrls: ['./gallery-home.component.scss']
+  styleUrls: ['./gallery-home.component.scss'],
 })
 export class GalleryHomeComponent implements OnInit, OnDestroy {
+
   // characterschema$: Observable<any>;
   characterslist$: Observable<any[]>;
   // subscription: Subscription;
@@ -34,6 +32,8 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
   pageTotalItems = 0;
   pageSize = 20;
 
+  searchText = '';
+
   constructor(private service: GalleryService, private store: Store) {}
 
   ngOnInit() {
@@ -45,9 +45,7 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
     if (isEmpty) {
       this.getAllByService();
     } else {
-      this.getCharactersByStore();
-      this.getPageByStore();
-      this.getCurrentPageByStore()
+      this.getAllByStore();
     }
   }
 
@@ -56,32 +54,15 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
     this.getAllByService();
   }
 
-  getCharactersByStore() {
-    this.store.getCharacterList().subscribe({next: (data) => this.pageResults = data});
-  }
-
-  getPageByStore() {
-    this.store.getPageInfo().subscribe({
-      next: (data) => {
-        this.pageInfo = data;
-        this.pageTotalItems = data.count;
-      }
-    });
-  }
-
-  getCurrentPageByStore() {
-    this.store.getCurrentPage().subscribe({next: (data) => this.currentPage = data});
-  }
-
   getAllByService() {
-    this.service.getAllCharacters(this.nextPage).subscribe({
+    this.service.getAllCharacters(`?name=${this.searchText}&page=${this.nextPage}`,this.nextPage).subscribe({
       next: (data) => {
         const { results, info } = data;
         this.pageInfo = info;
         this.pageResults = results;
 
         this.pageTotalItems = info.count;
-        this.currentPage = this.nextPage;        
+        this.currentPage = this.nextPage;
       },
       error: (err) => {
         console.log(err);
@@ -89,12 +70,38 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  getAllByStore() {
+    this.getCharactersByStore();
+    this.getPageByStore();
+    this.getCurrentPageByStore();
+  }
+
+  getCharactersByStore() {
+    this.store
+      .getCharacterList()
+      .subscribe({ next: (data) => (this.pageResults = data) });
+  }
+
+  getPageByStore() {
+    this.store.getPageInfo().subscribe({
+      next: (data) => {
+        this.pageInfo = data;
+        this.pageTotalItems = data.count;
+      },
+    });
+  }
+
+  getCurrentPageByStore() {
+    this.store
+      .getCurrentPage()
+      .subscribe({ next: (data) => (this.currentPage = data) });
+  }
+
   toggleItem(id: number) {
     const character = this.pageResults.find((item) => item.id === id);
     character.isFavorite = !character.isFavorite;
     // this.store.getPageInfo().subscribe((next) => (this.pageInfo = next));
-    this.service.toggleFavorite(
-      { character: { ...character } });
+    this.service.toggleFavorite({ character: { ...character } });
   }
 
   // onToggle(event: any) {
@@ -103,10 +110,21 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
   // }
 
   onResultList(event: any) {
-    this.characterslist$ = this.store
-      .getCharacterList()
-      .pipe(map((list) => (list = event.newList)));
+    this.searchText = event.text;
+    this.nextPage = 1;
+    const { results, info } = event.schema;
+        this.pageInfo = info;
+        this.pageResults = results;
+
+        this.pageTotalItems = info.count;
+        this.currentPage = this.nextPage;
   }
+
+  onReset() {
+    this.searchText = '';
+    this.nextPage = 1;
+    this.getAllByService();
+    }
 
   ngOnDestroy() {
     // this.subscription.unsubscribe();

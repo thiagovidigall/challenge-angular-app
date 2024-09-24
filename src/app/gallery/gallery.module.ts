@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -42,6 +45,7 @@ import { Store } from './service/gallery.store';
     GalleryRoutingModule,
     FormsModule,
     NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [GalleryService, Store],
 })

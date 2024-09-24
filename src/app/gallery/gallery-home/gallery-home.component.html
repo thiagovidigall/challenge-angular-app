@@ -1,9 +1,9 @@
 <main>
   <section class="search-section">
-    <app-gallery-search-input [list]="characterslist$ | async" (resultList)="onResultList($event)"></app-gallery-search-input>
+    <app-gallery-search-input [list]="pageResults" (resultList)="onResultList($event)" (reset)="onReset()"></app-gallery-search-input>
   </section>
   <section class="body-section">
-    <div class="content">      
+    <div class="content">
       <pagination-controls
         previousLabel="Prev"
         nextLabel="Next"

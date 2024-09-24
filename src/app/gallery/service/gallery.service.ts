@@ -1,9 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { map, Observable, tap } from 'rxjs';
+import {
+  map,
+  Observable,
+  tap,
+} from 'rxjs';
 
-import { Character, CharacterSchema, Page } from '../models/character';
+import {
+  Character,
+  CharacterSchema,
+} from '../models/character';
 import { Store } from './gallery.store';
 
 @Injectable()
@@ -26,8 +33,8 @@ export class GalleryService {
   //     tap((next) => this.store.set('characterschema', next))
   //   );
 
-  getAllCharacters(page: number): Observable<CharacterSchema> {    
-    return this.http.get<CharacterSchema>(this.UrlServiceV1 + '?page=' + page)
+  getAllCharacters(param: string, page = 1): Observable<CharacterSchema> {
+    return this.http.get<CharacterSchema>(this.UrlServiceV1 + param)
     .pipe(
       map((schema) => {
         schema.results = schema.results.map((character) => {
@@ -36,7 +43,7 @@ export class GalleryService {
           characterDto.isFavorite = this.getIsFavorite(character);
           return characterDto;
         });
-        
+
         return schema;
       }),
       tap((next) => this.store.set('characterslist', next.results)),
@@ -68,7 +75,7 @@ export class GalleryService {
       newFavoriteList = newFavoriteList.filter((item) => item.id != event.character.id);
     }
     this.store.set('favoritelist', newFavoriteList)
-    
+
     // let currentPage = this.store.value.currentpage;
     // currentPage = pageNumber;
     // this.store.set('currentpage', currentPage)
