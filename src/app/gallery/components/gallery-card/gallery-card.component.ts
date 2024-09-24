@@ -13,7 +13,6 @@ import { Character } from '../../models/character';
   styleUrls: ['./gallery-card.component.scss'],
 })
 export class GalleryCardComponent {
-
   @Input()
   character: Character;
 

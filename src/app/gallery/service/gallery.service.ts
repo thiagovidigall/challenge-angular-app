@@ -19,26 +19,10 @@ export class GalleryService {
 
   protected UrlServiceV1: string = 'https://rickandmortyapi.com/api/character/';
 
-  // getCharacterSchema$: Observable<CharacterSchema> = this.http
-  //   .get<CharacterSchema>(this.UrlServiceV1)
-  //   .pipe(
-  //     map((schema) => {
-  //       schema.results = schema.results.map((character) => {
-  //         const characterDto: Character = { ...character };
-  //         characterDto.isFavorite = false;
-  //         return characterDto;
-  //       });
-  //       return schema;
-  //     }),
-  //     tap((next) => this.store.set('characterschema', next))
-  //   );
-
   getAllCharacters(param: string, page = 1): Observable<CharacterSchema> {
-    return this.http.get<CharacterSchema>(this.UrlServiceV1 + param)
-    .pipe(
+    return this.http.get<CharacterSchema>(this.UrlServiceV1 + param).pipe(
       map((schema) => {
         schema.results = schema.results.map((character) => {
-
           const characterDto: Character = { ...character };
           characterDto.isFavorite = this.getIsFavorite(character);
           return characterDto;
@@ -54,30 +38,30 @@ export class GalleryService {
 
   getIsFavorite(character: Character): boolean {
     const favorites = this.store.value.favoritelist;
-    const favorite = favorites.find( (char) => char.id === character.id);
+    const favorite = favorites.find((char) => char.id === character.id);
     if (favorite) return true;
     return false;
   }
 
   toggleFavorite(event: any) {
-    const characterList = this.store.value.characterslist.map((item: Character) => {
-      if (event.character.id === item.id) {
-        return { ...item, ...event.character };
+    const characterList = this.store.value.characterslist.map(
+      (item: Character) => {
+        if (event.character.id === item.id) {
+          return { ...item, ...event.character };
+        }
+        return item;
       }
-      return item;
-    });
+    );
     this.store.set('characterslist', characterList);
 
-    let newFavoriteList =  this.store.value.favoritelist;
+    let newFavoriteList = this.store.value.favoritelist;
     if (event.character.isFavorite) {
       newFavoriteList.push(event.character);
     } else {
-      newFavoriteList = newFavoriteList.filter((item) => item.id != event.character.id);
+      newFavoriteList = newFavoriteList.filter(
+        (item) => item.id != event.character.id
+      );
     }
-    this.store.set('favoritelist', newFavoriteList)
-
-    // let currentPage = this.store.value.currentpage;
-    // currentPage = pageNumber;
-    // this.store.set('currentpage', currentPage)
+    this.store.set('favoritelist', newFavoriteList);
   }
 }

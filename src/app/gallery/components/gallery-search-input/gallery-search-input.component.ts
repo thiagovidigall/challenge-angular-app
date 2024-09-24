@@ -24,23 +24,22 @@ import { GalleryService } from '../../service/gallery.service';
   styleUrls: ['./gallery-search-input.component.css'],
   providers: [FilterPipe],
 })
-export class GallerySearchInputComponent{
-
+export class GallerySearchInputComponent {
   query = new FormControl();
 
   constructor(private service: GalleryService, private filter: FilterPipe) {}
 
   ngOnInit() {
     this.query.valueChanges
-    .pipe(
-      map(value => value.trim()),
-      filter(value => value.length >= 3),
-      debounceTime(200),
-      distinctUntilChanged(),
-      switchMap(value => this.service.getAllCharacters(
-        `?name=${value}`)),
-      map((res: any) => res)
-    ).subscribe(res => this.updateResultList(res))
+      .pipe(
+        map((value) => value.trim()),
+        filter((value) => value.length >= 3),
+        debounceTime(200),
+        distinctUntilChanged(),
+        switchMap((value) => this.service.getAllCharacters(`?name=${value}`)),
+        map((res: any) => res)
+      )
+      .subscribe((res) => this.updateResultList(res));
   }
 
   @Input()
@@ -52,13 +51,13 @@ export class GallerySearchInputComponent{
   @Output()
   reset = new EventEmitter<any>();
 
-  updateResultList(schema : any) {
-    this.resultList.emit({schema: schema, text: this.query.value});
+  updateResultList(schema: any) {
+    this.resultList.emit({ schema: schema, text: this.query.value });
   }
 
   keyUp(event: any) {
     const text = event.target.value;
-    if (text.length > 0) return
+    if (text.length > 0) return;
     this.reset.emit();
   }
 }

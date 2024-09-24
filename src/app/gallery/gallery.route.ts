@@ -11,18 +11,18 @@ import { GalleryHomeComponent } from './gallery-home/gallery-home.component';
 import { GalleryAppComponent } from './gallery.app.component';
 
 const routes: Routes = [
-  { path: '', component: GalleryAppComponent,
+  {
+    path: '',
+    component: GalleryAppComponent,
     children: [
       { path: '', component: GalleryHomeComponent },
-      { path: 'favorite', component: GalleryFavoriteComponent }
-    ]
-   },
+      { path: 'favorite', component: GalleryFavoriteComponent },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(routes)
-    ],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class GalleryRoutingModule { }
+export class GalleryRoutingModule {}

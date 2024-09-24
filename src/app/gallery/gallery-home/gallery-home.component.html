@@ -1,6 +1,10 @@
 <main>
   <section class="search-section">
-    <app-gallery-search-input [list]="pageResults" (resultList)="onResultList($event)" (reset)="onReset()"></app-gallery-search-input>
+    <app-gallery-search-input
+      [list]="pageResults"
+      (resultList)="onResultList($event)"
+      (reset)="onReset()"
+    ></app-gallery-search-input>
   </section>
   <section class="body-section">
     <div class="content">
@@ -11,36 +15,21 @@
         (pageChange)="handlePageChange($event)"
       ></pagination-controls>
 
-      <!-- <gallery [list]="characterslist$ | async" (toggle)="onToggle($event)"></gallery> -->
-
-      <div
-        *ngFor="
-          let item of pageResults
-            | paginate
-              : {
-                  itemsPerPage: pageSize,
-                  currentPage: currentPage,
-                  totalItems: pageTotalItems
-                };
-          let i = index
-        "
-        class="col-md-4"
-        style="padding-bottom: 30px"
-      >
-        <div class="card h-100">
-          <a class="text-decoration-none" href="javascript:void(0)">
-            <div style="align-content: center">
-              <img src="{{ item.image }}" height="164px" width="253px" alt="" />
-            </div>
-          </a>
-          <h4 class="card-title">{{ item.name | titlecase }}</h4>
-          <h6 class="card-title">{{ item.species | titlecase }}</h6>
-          <span (click)="toggleItem(item.id)"
-            ><i
-              [ngClass]="item.isFavorite ? 'fas fa-heart' : 'far fa-heart'"
-            ></i
-          ></span>
-        </div>
+      <div>
+        <section class="body-section">
+          <app-gallery-list
+            [list]="
+              pageResults
+                | paginate
+                  : {
+                      itemsPerPage: pageSize,
+                      currentPage: currentPage,
+                      totalItems: pageTotalItems
+                    }
+            "
+            (toggleItem)="onToggleItem($event)"
+          ></app-gallery-list>
+        </section>
       </div>
     </div>
   </section>

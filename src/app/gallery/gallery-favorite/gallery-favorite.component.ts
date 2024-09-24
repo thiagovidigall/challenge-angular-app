@@ -12,26 +12,23 @@ import { Store } from '../service/gallery.store';
 @Component({
   selector: 'app-gallery-favorite',
   templateUrl: './gallery-favorite.component.html',
-  styleUrls: ['./gallery-favorite.component.scss']
+  styleUrls: ['./gallery-favorite.component.scss'],
 })
-export class GalleryFavoriteComponent implements OnInit{
+export class GalleryFavoriteComponent implements OnInit {
   favoritelist$: Observable<any[]>;
-  page: Page
-  currentPage: number
+  page: Page;
+  currentPage: number;
 
   constructor(private service: GalleryService, private store: Store) {}
 
   ngOnInit() {
     const isEmpty = Object.keys(this.store.value.pageinfo).length === 0;
-    if(!isEmpty) {
+    if (!isEmpty) {
       this.favoritelist$ = this.store.getFavoriteList();
-    }  
+    }
   }
 
   onToggleItem(event: any) {
-    // this.store.getPageInfo().subscribe(next => this.page = next);
-    // this.store.getCurrentPage().subscribe(next => this.currentPage = next);
     this.service.toggleFavorite(event);
   }
-
 }

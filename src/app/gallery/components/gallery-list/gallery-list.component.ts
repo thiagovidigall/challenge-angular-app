@@ -12,8 +12,7 @@ import { Character } from '../../models/character';
   templateUrl: './gallery-list.component.html',
   styleUrls: ['./gallery-list.component.scss'],
 })
-export class GalleryListComponent  {
-
+export class GalleryListComponent {
   @Input()
   list: Character[];
 

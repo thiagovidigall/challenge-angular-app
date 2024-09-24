@@ -1,10 +1,7 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
-
-import { Observable } from 'rxjs';
 
 import {
   Character,
@@ -18,12 +15,7 @@ import { Store } from '../service/gallery.store';
   templateUrl: './gallery-home.component.html',
   styleUrls: ['./gallery-home.component.scss'],
 })
-export class GalleryHomeComponent implements OnInit, OnDestroy {
-
-  // characterschema$: Observable<any>;
-  characterslist$: Observable<any[]>;
-  // subscription: Subscription;
-
+export class GalleryHomeComponent implements OnInit {
   pageResults: Character[];
   pageInfo: Page;
 
@@ -55,19 +47,24 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
   }
 
   getAllByService() {
-    this.service.getAllCharacters(`?name=${this.searchText}&page=${this.nextPage}`,this.nextPage).subscribe({
-      next: (data) => {
-        const { results, info } = data;
-        this.pageInfo = info;
-        this.pageResults = results;
+    this.service
+      .getAllCharacters(
+        `?name=${this.searchText}&page=${this.nextPage}`,
+        this.nextPage
+      )
+      .subscribe({
+        next: (data) => {
+          const { results, info } = data;
+          this.pageInfo = info;
+          this.pageResults = results;
 
-        this.pageTotalItems = info.count;
-        this.currentPage = this.nextPage;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+          this.pageTotalItems = info.count;
+          this.currentPage = this.nextPage;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   getAllByStore() {
@@ -97,36 +94,24 @@ export class GalleryHomeComponent implements OnInit, OnDestroy {
       .subscribe({ next: (data) => (this.currentPage = data) });
   }
 
-  toggleItem(id: number) {
-    const character = this.pageResults.find((item) => item.id === id);
-    character.isFavorite = !character.isFavorite;
-    // this.store.getPageInfo().subscribe((next) => (this.pageInfo = next));
-    this.service.toggleFavorite({ character: { ...character } });
+  onToggleItem(event: any) {
+    this.service.toggleFavorite({ character: { ...event.character } });
   }
-
-  // onToggle(event: any) {
-  //   this.store.getCharacterSchemaPage().subscribe((next) => (this.info = next));
-  //   this.service.toggleFavorite(event, this.info);
-  // }
 
   onResultList(event: any) {
     this.searchText = event.text;
     this.nextPage = 1;
     const { results, info } = event.schema;
-        this.pageInfo = info;
-        this.pageResults = results;
+    this.pageInfo = info;
+    this.pageResults = results;
 
-        this.pageTotalItems = info.count;
-        this.currentPage = this.nextPage;
+    this.pageTotalItems = info.count;
+    this.currentPage = this.nextPage;
   }
 
   onReset() {
     this.searchText = '';
     this.nextPage = 1;
     this.getAllByService();
-    }
-
-  ngOnDestroy() {
-    // this.subscription.unsubscribe();
   }
 }

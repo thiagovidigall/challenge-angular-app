@@ -45,7 +45,7 @@ import { Store } from './service/gallery.store';
     GalleryRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [GalleryService, Store],
 })

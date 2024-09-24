@@ -6,55 +6,51 @@ import { map } from 'rxjs/operators';
 
 import {
   Character,
-  CharacterSchema,
-  Page
+  Page,
 } from '../models/character';
 
 export interface State {
-    pageinfo: Page,
-    characterslist: Character[],
-    currentpage: number,
-    favoritelist: Character[]
+  pageinfo: Page;
+  characterslist: Character[];
+  currentpage: number;
+  favoritelist: Character[];
 }
 
 const state: State = {
   pageinfo: {} as Page,
   characterslist: [],
   currentpage: 0,
-  favoritelist: []
+  favoritelist: [],
 };
 
 export class Store {
-    private subject = new BehaviorSubject<State>(state);
-    private store = this.subject.asObservable();
+  private subject = new BehaviorSubject<State>(state);
+  private store = this.subject.asObservable();
 
-    get value() {
-        return this.subject.value;
-    }
+  get value() {
+    return this.subject.value;
+  }
 
-    public getPageInfo(): Observable<Page> {
-      return this.store
-          .pipe(map(store => store.pageinfo));
-    }
+  public getPageInfo(): Observable<Page> {
+    return this.store.pipe(map((store) => store.pageinfo));
+  }
 
-    public getCharacterList(): Observable<Character[]> {
-      return this.store
-          .pipe(map(store => store.characterslist));
-    }
+  public getCharacterList(): Observable<Character[]> {
+    return this.store.pipe(map((store) => store.characterslist));
+  }
 
-    public getCurrentPage(): Observable<number> {
-      return this.store
-          .pipe(map(store => store.currentpage));
-    }
+  public getCurrentPage(): Observable<number> {
+    return this.store.pipe(map((store) => store.currentpage));
+  }
 
-    public getFavoriteList(): Observable<Character[]> {
-      return this.store
-          .pipe(map(store => store.favoritelist));
-    }
+  public getFavoriteList(): Observable<Character[]> {
+    return this.store.pipe(map((store) => store.favoritelist));
+  }
 
-    set(name: string, state: any) {
-        this.subject.next({
-            ...this.value, [name]: state
-        });
-    }
+  set(name: string, state: any) {
+    this.subject.next({
+      ...this.value,
+      [name]: state,
+    });
+  }
 }
