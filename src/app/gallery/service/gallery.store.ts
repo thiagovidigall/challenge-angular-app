@@ -47,6 +47,10 @@ export class Store {
     return this.store.pipe(map((store) => store.favoritelist));
   }
 
+  public getFavoriteCounter(): Observable<number> {
+    return this.store.pipe(map((store) => store.favoritelist.length));
+  }
+
   set(name: string, state: any) {
     this.subject.next({
       ...this.value,

@@ -2,52 +2,6 @@ main {
   display: 100%;
 }
 
-.search-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  margin-top: 80px;
-  z-index: 1;
-  background-color: #fff;
+.content-section {
+  background-color: #1F1F1F;
 }
-
-.body-section {
-  width: 100%;
-  display: flex;
-  padding: 220px 100px 50px 100px;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-}
-
-// .search-results {
-//   height: 20rem;
-//   overflow: scroll;
-// }
-
-@media (max-width: 768px) {
-  .body-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 250px;
-  }
-}
-
-@media (max-width: 425px) {
-  .search-section {
-    margin-top: 100px;
-  }
-
-  .body-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 250px;
-  }
-}
-
-

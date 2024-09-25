@@ -1,9 +1,11 @@
-<div class="form-floating mb-3">
-  <input
-    type="text"
-    class="form-control"
-    [formControl]="query"
-    (keyup)="keyUp($event)"
-  />
-  <label for="floatingInput">Pesquisar</label>
-</div>
+<section class="search-section">
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      [formControl]="query"
+      (keyup)="keyUp($event)"
+    />
+    <label for="floatingInput">Pesquisar</label>
+  </div>
+</section>

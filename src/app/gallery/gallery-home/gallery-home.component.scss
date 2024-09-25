@@ -2,42 +2,20 @@ main {
   display: 100%;
 }
 
-.search-section {
+.content-section {
+  background-color: #1F1F1F;
+}
+
+.nav-section {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  margin-top: 80px;
+  margin-top: 150px;
   z-index: 1;
-  background-color: #fff;
 }
-
-// .search-results {
-//   height: 20rem;
-//   overflow: scroll;
-// }
-
-.body-section {
-  width: 100%;
-  // width: 1441px; fill
-  // height: 2571px; hug
-  display: flex;
-  // padding: 48px 24px 48px 24px;
-  padding: 220px 100px 50px 100px;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  background-color: #1F1F1F;
-  color: #fff;
-}
-
-// .content {
-//   width: 720px; //720 fill
-//   height: 2475px; //720 hug
-//   gap: 48px;
-// }
 
 @media (max-width: 768px) {
   .body-section {

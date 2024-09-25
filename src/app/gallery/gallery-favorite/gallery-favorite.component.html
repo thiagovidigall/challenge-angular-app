@@ -1,16 +1,11 @@
 <main>
-  <div class="tittle">
-    <h1>Favoritos</h1>
-  </div>
-  <section class="search-section">
-    <h1>Favoritos 2</h1>
-  </section>
-  <div>
-    <section class="body-section">
-      <app-gallery-list
+  <div class="content-section">
+    <app-gallery-list
         [list]="favoritelist$ | async"
         (toggleItem)="onToggleItem($event)"
       ></app-gallery-list>
-    </section>
   </div>
 </main>
+
+
+

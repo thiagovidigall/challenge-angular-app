@@ -3,16 +3,38 @@
     <div class="menu">
       <div class="icon-name">
         <a href="./">
-          <img class="logo" src="assets/logo.png" alt="logo" />
+          <img src="assets/logo.png" alt="icon-menu" />
         </a>
       </div>
       <div class="main-menu">
-        <nav>
-          <ul>
-            <li><a [routerLink]="['']">Início</a></li>
-            <li><a [routerLink]="['favorite']">Favorito</a></li>
-          </ul>
-        </nav>
+        <div class="btn-group" role="group" aria-label="button group">
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            [ngClass]="isBtnBeginPressed ? 'active' : ''"
+            (click)="onClick()"
+            [routerLink]="['']"
+            data-toggle="button"
+            aria-pressed="isPressed"
+            autocomplete="off"
+          >
+          <i class="fas fa-home"></i>
+            Início
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            [ngClass]="isBtnFavoritePressed ? 'active' : ''"
+            (click)="onClick()"
+            data-toggle="button"
+            aria-pressed="isPressed"
+            autocomplete="off"
+          >
+          <i class="fas fa-heart"></i>
+            Favoritos
+            <span class="badge text-bg-secondary">{{favoriteCounter}}</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>

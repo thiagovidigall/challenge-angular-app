@@ -1,5 +1,10 @@
 @import 'bootstrap/scss/bootstrap';
 
+$background: #0A0A0A;
+$background1: #1F1F1F;
+$border: #3D3D3D;
+
+
 h1,
 h2,
 h3,
@@ -32,12 +37,11 @@ button {
 }
 
 body {
-  font-family: "Creepster", system-ui;
-  font-weight: 400;
-  font-style: normal;
+  font-family: "Poppins", system-ui;
 }
 
 
 @mixin padding-grid($top, $right, $bottom, $left) {
   padding: $top $right $bottom $left;
 }
+

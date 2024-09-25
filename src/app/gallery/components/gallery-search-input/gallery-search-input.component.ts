@@ -21,7 +21,7 @@ import { GalleryService } from '../../service/gallery.service';
 @Component({
   selector: 'app-gallery-search-input',
   templateUrl: './gallery-search-input.component.html',
-  styleUrls: ['./gallery-search-input.component.css'],
+  styleUrls: ['./gallery-search-input.component.scss'],
   providers: [FilterPipe],
 })
 export class GallerySearchInputComponent {

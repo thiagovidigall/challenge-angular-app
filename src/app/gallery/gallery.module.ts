@@ -20,6 +20,9 @@ import {
   GallerySearchInputComponent,
 } from './components/gallery-search-input/gallery-search-input.component';
 import {
+  GalleryFavoriteEmptyComponent,
+} from './gallery-favorite-empty/gallery-favorite-empty.component';
+import {
   GalleryFavoriteComponent,
 } from './gallery-favorite/gallery-favorite.component';
 import { GalleryHomeComponent } from './gallery-home/gallery-home.component';
@@ -28,6 +31,7 @@ import { GalleryRoutingModule } from './gallery.route';
 import { FilterPipe } from './pipes/filter.pipe';
 import { GalleryService } from './service/gallery.service';
 import { Store } from './service/gallery.store';
+import { GalleryHomeEmptyComponent } from './gallery-home-empty/gallery-home-empty.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,8 @@ import { Store } from './service/gallery.store';
     GalleryHeaderComponent,
     FilterPipe,
     GallerySearchInputComponent,
+    GalleryFavoriteEmptyComponent,
+    GalleryHomeEmptyComponent,
   ],
   imports: [
     CommonModule,
