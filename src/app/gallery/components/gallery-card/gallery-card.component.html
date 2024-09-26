@@ -1,9 +1,9 @@
-<div class="card cursor" style="width: 18rem">
+<div class="card cursor position-relative" style="width: 18rem">
   <img src="{{ character.image }}" class="card-img-top" alt="..." />
   <div class="card-body shadow-dreamy">
     <p class="card-text-name">{{ character.name | titlecase }}</p>
     <p class="card-text">{{ character.species | titlecase }}</p>
-    <span (click)="onToggleId(character.id)"
+    <span class="position-absolute" style="top: 0; right: 0;" (click)="onToggleId(character.id)"
       ><i [ngClass]="character.isFavorite ? 'fas fa-heart' : 'far fa-heart'"></i
     ></span>
   </div>
