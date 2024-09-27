@@ -5,8 +5,26 @@ main {
 .content-section {
   width: 100%;
   background-color: #1F1F1F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  margin: 150px;
 }
 
 .content {
+  margin: 150px;
+  width: 900px;
   height: 720px;
+  background-color: #0A0A0A;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
 }
+
+// .box {
+//   color: white;
+// }
